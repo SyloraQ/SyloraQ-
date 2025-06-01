@@ -5,218 +5,155 @@
   <title>SyloraQ - Projects & Info</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Montserrat:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
-    /* Animated gradient background with subtle tech grid lines */
     body {
       margin: 0;
       min-height: 100vh;
       font-family: 'Montserrat', sans-serif;
-      background:
-        linear-gradient(270deg, #0f2027, #203a43, #2c5364, #1c1c1c);
+      background: linear-gradient(270deg, #0f2027, #203a43, #2c5364, #1c1c1c);
       background-size: 800% 800%;
       animation: gradientShift 20s ease infinite;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #a0e9ff;
+      color: #cce7ff;
       padding: 20px;
-      position: relative;
       overflow: hidden;
     }
-    /* Tech grid lines overlay */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background:
-        linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-    }
     @keyframes gradientShift {
-      0% {background-position: 0% 50%}
-      50% {background-position: 100% 50%}
-      100% {background-position: 0% 50%}
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
     }
 
-    /* Glassmorphism container with neon glow */
     .container {
-      background: rgba(10, 10, 20, 0.9);
-      border-radius: 25px;
-      box-shadow:
-        0 0 20px #00ffffaa,
-        0 0 40px #00fffcee;
-      padding: 50px 60px;
-      max-width: 720px;
+      background: rgba(20, 20, 30, 0.85);
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0, 126, 255, 0.5);
+      padding: 40px 50px;
+      max-width: 700px;
       width: 100%;
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(0,255,255,0.3);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(0,126,255,0.3);
       animation: fadeInUp 1s ease forwards;
       overflow-y: auto;
       max-height: 90vh;
-      position: relative;
+      opacity: 0;
+      transition: opacity 1s ease;
       z-index: 1;
+      position: relative;
     }
     @keyframes fadeInUp {
       0% {opacity: 0; transform: translateY(40px);}
       100% {opacity: 1; transform: translateY(0);}
     }
 
-    /* Headings with futuristic font & glow */
     h1, h2 {
-      font-family: 'Orbitron', sans-serif;
-      color: #00f0ff;
-      text-shadow:
-        0 0 8px #00f0ff,
-        0 0 20px #00f0ffaa;
-      font-weight: 700;
+      color: #00cfff;
+      text-shadow: 0 0 10px #00cfff;
+      font-weight: 600;
       margin-bottom: 15px;
-      letter-spacing: 1.3px;
-      position: relative;
+      letter-spacing: 1.1px;
     }
     h1 {
-      font-size: 3.2rem;
       text-align: center;
-      margin-bottom: 40px;
-      letter-spacing: 2px;
+      font-size: 3rem;
+      margin-bottom: 30px;
     }
     h2 {
-      font-size: 2rem;
-      margin-top: 40px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #00d9f6;
-    }
-
-    /* Small glowing tech corner lines on headings */
-    h2::before, h2::after {
-      content: "";
-      position: absolute;
-      height: 8px;
-      width: 8px;
-      border: 2px solid #00d9f6;
-      box-shadow: 0 0 8px #00d9f6;
-      border-radius: 2px;
-    }
-    h2::before {
-      top: 0;
-      left: -20px;
-      border-right: none;
-      border-bottom: none;
-    }
-    h2::after {
-      bottom: 0;
-      right: -20px;
-      border-left: none;
-      border-top: none;
+      margin-top: 30px;
+      font-size: 1.8rem;
+      border-bottom: 1px solid #005f9e;
+      padding-bottom: 6px;
     }
 
     p {
-      font-size: 1.15rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-      color: #a0e9ffcc;
-      text-shadow: 0 0 8px rgba(0, 255, 255, 0.25);
-      letter-spacing: 0.03em;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      color: #a9d1ff;
+      text-shadow: 0 0 5px rgba(0,191,255,0.6);
     }
 
-    /* Futuristic neon button style */
     .btn-link {
       display: inline-block;
-      padding: 14px 30px;
-      margin: 10px 0;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #000c12;
-      background: linear-gradient(90deg, #00fff7, #00b9d7);
-      border-radius: 50px;
+      padding: 10px 22px;
+      margin: 6px 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f2027;
+      background: linear-gradient(90deg, #00ffe7, #00bcd4);
+      border: none;
+      border-radius: 40px;
       cursor: pointer;
-      box-shadow:
-        0 0 15px #00fff7,
-        0 0 30px #00b9d7,
-        inset 0 0 10px #00fff7;
+      box-shadow: 0 0 15px #00ffe7;
       text-decoration: none;
       text-align: center;
       user-select: none;
-      transition: all 0.35s ease;
-      position: relative;
-      overflow: hidden;
-      z-index: 0;
-    }
-    /* Scanline animated overlay */
-    .btn-link::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -25%;
-      width: 150%;
-      height: 200%;
-      background:
-        linear-gradient(
-          45deg,
-          transparent 0%,
-          rgba(255,255,255,0.15) 25%,
-          transparent 50%
-        );
-      transform: rotate(25deg);
-      animation: scanline 3s linear infinite;
-      z-index: 1;
-    }
-    @keyframes scanline {
-      0% {transform: rotate(25deg) translateX(-150%);}
-      100% {transform: rotate(25deg) translateX(150%);}
+      transition: background 0.4s ease, box-shadow 0.4s ease, color 0.3s ease;
     }
     .btn-link:hover, .btn-link:focus {
-      background: linear-gradient(90deg, #00b9d7, #00fff7);
-      box-shadow:
-        0 0 30px #00fff7,
-        0 0 50px #00b9d7,
-        inset 0 0 20px #00fff7;
-      color: #00141a;
+      background: linear-gradient(90deg, #00bcd4, #00ffe7);
+      box-shadow: 0 0 30px #00ffe7, 0 0 40px #00bcd4;
+      color: #0f2027;
       outline: none;
     }
 
     strong {
-      color: #5ce0ff;
+      color: #80dfff;
     }
 
     ul {
-      padding-left: 24px;
-      margin-bottom: 30px;
+      padding-left: 20px;
+      margin-bottom: 20px;
     }
 
     li {
-      margin-bottom: 12px;
-      font-size: 1.15rem;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
     }
 
     hr {
       border: none;
-      border-top: 2px solid #00b9d7;
-      margin: 45px 0;
-      opacity: 0.6;
-      box-shadow: 0 0 10px #00b9d7;
+      border-top: 1px solid #005f9e;
+      margin: 35px 0;
+      opacity: 0.5;
     }
-
-    /* Scrollbar styling for container */
+    
     .container::-webkit-scrollbar {
-      width: 10px;
+      width: 8px;
     }
     .container::-webkit-scrollbar-track {
-      background: rgba(0,0,0,0.15);
-      border-radius: 6px;
+      background: rgba(0,0,0,0.1);
+      border-radius: 4px;
     }
     .container::-webkit-scrollbar-thumb {
-      background: #00e6ff;
-      border-radius: 6px;
-      box-shadow: 0 0 10px #00e6ffaa;
+      background: #00cfff;
+      border-radius: 4px;
     }
+
+    #intro-video {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 9999;
+    background: transparent;
+    opacity: 0.85;
+    transition: opacity 1s ease;
+    }
+
   </style>
 </head>
 <body>
-  <div class="container" role="main">
+  <video id="intro-video" autoplay muted playsinline>
+    <source src="https://raw.githubusercontent.com/SyloraQ/SyloraQ-/main/intro.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="container" role="main" aria-live="polite" tabindex="0">
     <h1>SyloraQ</h1>
 
     <h2>Who is SyloraQ?</h2>
@@ -269,5 +206,20 @@
     <h2>Getting Help</h2>
     <p>Just like suggesting, join the Discord server and report problems in the help or bugs channel.</p>
   </div>
+
+  <script>
+    const video = document.getElementById('intro-video');
+    const container = document.querySelector('.container');
+
+    video.addEventListener('ended', () => {
+      video.style.transition = 'opacity 1s ease';
+      video.style.opacity = '0';
+
+      setTimeout(() => {
+        video.style.display = 'none';
+        container.style.opacity = '1';
+      }, 1000);
+    });
+  </script>
 </body>
 </html>
