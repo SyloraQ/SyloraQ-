@@ -1,184 +1,191 @@
-<style>
-  /* Body container styling */
-  .luxury-container {
-    background: linear-gradient(135deg, #001f4d, #003366);
-    color: #cce7ff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 0 20px #0077ffcc;
-    position: relative;
-    overflow: hidden;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SyloraQ - Projects & Info</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
-  h1, h2 {
-    color: #7ec8ff;
-    text-shadow: 0 0 8px #3da9fc;
-    font-weight: 900;
-    letter-spacing: 1.3px;
-  }
+    /* Animated gradient background */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(270deg, #0f2027, #203a43, #2c5364, #1c1c1c);
+      background-size: 800% 800%;
+      animation: gradientShift 20s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #cce7ff;
+      padding: 20px;
+    }
+    @keyframes gradientShift {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
 
-  a {
-    color: #a1d6ff;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  a:hover {
-    text-decoration: underline;
-    color: #62b0ff;
-  }
+    /* Glassmorphism container */
+    .container {
+      background: rgba(20, 20, 30, 0.85);
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0, 126, 255, 0.5);
+      padding: 40px 50px;
+      max-width: 700px;
+      width: 100%;
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(0,126,255,0.3);
+      animation: fadeInUp 1s ease forwards;
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+    @keyframes fadeInUp {
+      0% {opacity: 0; transform: translateY(40px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
 
-  strong {
-    color: #f0f9ff;
-    font-weight: 700;
-  }
+    h1, h2 {
+      color: #00cfff;
+      text-shadow: 0 0 10px #00cfff;
+      font-weight: 600;
+      margin-bottom: 15px;
+      letter-spacing: 1.1px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 30px;
+    }
+    h2 {
+      margin-top: 30px;
+      font-size: 1.8rem;
+      border-bottom: 1px solid #005f9e;
+      padding-bottom: 6px;
+    }
 
-  hr {
-    border: 0;
-    height: 1px;
-    background: #004080;
-    margin: 2rem 0;
-  }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      color: #a9d1ff;
+      text-shadow: 0 0 5px rgba(0,191,255,0.6);
+    }
 
-  /* Animation for links */
-  .glow-link:hover {
-    animation: glow 1.5s infinite alternate;
-  }
+    /* Button-style links */
+    .btn-link {
+      display: inline-block;
+      padding: 10px 22px;
+      margin: 6px 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f2027;
+      background: linear-gradient(90deg, #00ffe7, #00bcd4);
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00ffe7;
+      text-decoration: none;
+      text-align: center;
+      user-select: none;
+      transition: background 0.4s ease, box-shadow 0.4s ease, color 0.3s ease;
+    }
+    .btn-link:hover, .btn-link:focus {
+      background: linear-gradient(90deg, #00bcd4, #00ffe7);
+      box-shadow: 0 0 30px #00ffe7, 0 0 40px #00bcd4;
+      color: #0f2027;
+      outline: none;
+    }
 
-  @keyframes glow {
-    0% { text-shadow: 0 0 4px #7ec8ff; }
-    100% { text-shadow: 0 0 12px #4a90e2; }
-  }
+    strong {
+      color: #80dfff;
+    }
 
-  /* Particle canvas overlay */
-  #particle-canvas {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 0;
-  }
+    ul {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
 
-  /* Content should be above canvas */
-  .content {
-    position: relative;
-    z-index: 1;
-  }
-</style>
+    li {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
 
-<div class="luxury-container">
-  <canvas id="particle-canvas"></canvas>
-  <div class="content">
+    hr {
+      border: none;
+      border-top: 1px solid #005f9e;
+      margin: 35px 0;
+      opacity: 0.5;
+    }
 
-  <h1>Who is SyloraQ?</h1>
-  <p>SyloraQ is owner of the GBS BLP JPM and some other projects!</p>
+    /* Scrollbar styling for container */
+    .container::-webkit-scrollbar {
+      width: 8px;
+    }
+    .container::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.1);
+      border-radius: 4px;
+    }
+    .container::-webkit-scrollbar-thumb {
+      background: #00cfff;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <h1>SyloraQ</h1>
 
-  <h2>SyloraQ</h2>
-  <p>SyloraQ is a module that adds new functions to <strong>python</strong> and simplify the existing ones...</p>
+    <h2>Who is SyloraQ?</h2>
+    <p>SyloraQ is owner of the GBS, BLP, JPM and some other projects!</p>
 
-  <h2>Guide</h2>
-  <p>Click <a href="GUIDE.md" class="glow-link">GUIDE</a> to see it.</p>
+    <h2>About SyloraQ Module</h2>
+    <p>SyloraQ is a module that adds new functions to <strong>Python</strong> and simplifies existing ones.</p>
 
-  <h2>Install command</h2>
-  <p><strong>pip install SyloraQ</strong></p>
+    <h2>Guide</h2>
+    <a href="GUIDE.md" class="btn-link">View GUIDE</a>
 
-  <h2>PyPI</h2>
-  <p><a href="https://pypi.org/project/SyloraQ/" target="_blank" rel="noopener" class="glow-link">SyloraQ PyPI</a></p>
+    <h2>Install Command</h2>
+    <p><strong>pip install SyloraQ</strong></p>
 
-  <h2>License</h2>
-  <p>This project is licensed under the <a href="LICENSE.md" class="glow-link">Private Use License</a>.</p>
+    <h2>PyPI</h2>
+    <a href="https://pypi.org/project/SyloraQ/" target="_blank" rel="noopener" class="btn-link">SyloraQ PyPI</a>
 
-  <h2>My YouTube channel</h2>
-  <p><a href="https://youtube.com/channel/UCOvDKDUeQXqxkit2_mngZDQ/?sub_confirmation=1" target="_blank" rel="noopener" class="glow-link">SyloraQ</a></p>
+    <h2>License</h2>
+    <a href="LICENSE.md" class="btn-link">Private Use License</a>
 
-  <p><strong>For the exe files you can check <a href="https://github.com/GoodByeSyntax/ByteLightProject" target="_blank" rel="noopener" class="glow-link">ByteLightProject</a>.</strong></p>
+    <h2>My YouTube Channel</h2>
+    <a href="https://youtube.com/channel/UCOvDKDUeQXqxkit2_mngZDQ/?sub_confirmation=1" target="_blank" rel="noopener" class="btn-link">SyloraQ YouTube</a>
 
-  <hr>
+    <p><strong>For the exe files you can check <a href="https://github.com/GoodByeSyntax/ByteLightProject" target="_blank" rel="noopener" class="btn-link">ByteLightProject</a>.</strong></p>
 
-  <h2><strong>Coding</strong></h2>
-  <ul>
-    <li>SQ: <a href="https://youtube.com/channel/UCOvDKDUeQXqxkit2_mngZDQ/?sub_confirmation=1" target="_blank" rel="noopener" class="glow-link">Here</a></li>
-    <li>GBS: <a href="https://pypi.org/project/GoodByeSyntax" target="_blank" rel="noopener" class="glow-link">Here</a></li>
-    <li>BLP: <a href="https://pypi.org/project/ByteLightProject" target="_blank" rel="noopener" class="glow-link">Here</a></li>
-    <li>JPM: <a href="https://pypi.org/project/JynPopMod" target="_blank" rel="noopener" class="glow-link">Here</a></li>
-    <li>Jai: <a href="https://pypi.org/project/JynAi" target="_blank" rel="noopener" class="glow-link">Here</a></li>
-  </ul>
+    <hr />
 
-  <h2><strong>Platforms</strong></h2>
-  <ul>
-    <li>Youtube: <a href="https://youtube.com/channel/UCOvDKDUeQXqxkit2_mngZDQ/?sub_confirmation=1" target="_blank" rel="noopener" class="glow-link">Here</a></li>
-    <li>Discord: <a href="https://discord.gg/UMYJrp2B" target="_blank" rel="noopener" class="glow-link">Here</a></li>
-    <li>Github: <a href="https://github.com/SyloraQ" target="_blank" rel="noopener" class="glow-link">Here</a></li>
-  </ul>
+    <h2>Coding</h2>
+    <ul>
+      <li>SQ: <a href="https://youtube.com/channel/UCOvDKDUeQXqxkit2_mngZDQ/?sub_confirmation=1" target="_blank" rel="noopener" class="btn-link">Here</a></li>
+      <li>GBS: <a href="https://pypi.org/project/GoodByeSyntax" target="_blank" rel="noopener" class="btn-link">Here</a></li>
+      <li>BLP: <a href="https://pypi.org/project/ByteLightProject" target="_blank" rel="noopener" class="btn-link">Here</a></li>
+      <li>JPM: <a href="https://pypi.org/project/JynPopMod" target="_blank" rel="noopener" class="btn-link">Here</a></li>
+      <li>Jai: <a href="https://pypi.org/project/JynAi" target="_blank" rel="noopener" class="btn-link">Here</a></li>
+    </ul>
 
-  <h2><strong>Contact</strong></h2>
-  <p>Gmail: mail service is coming as soon as possible!</p>
+    <h2>Platforms</h2>
+    <ul>
+      <li>YouTube: <a href="https://youtube.com/channel/UCOvDKDUeQXqxkit2_mngZDQ/?sub_confirmation=1" target="_blank" rel="noopener" class="btn-link">Here</a></li>
+      <li>Discord: <a href="https://discord.gg/UMYJrp2B" target="_blank" rel="noopener" class="btn-link">Here</a></li>
+      <li>GitHub: <a href="https://github.com/SyloraQ" target="_blank" rel="noopener" class="btn-link">Here</a></li>
+    </ul>
 
-  <h2><strong>How Do I Suggest?</strong></h2>
-  <p>Join <a href="https://discord.gg/UMYJrp2B" target="_blank" rel="noopener" class="glow-link">Our Discord</a> and suggest your suggestion in suggestions channel</p>
+    <h2>Contact</h2>
+    <p>Gmail: mail service is coming as soon as possible!</p>
 
-  <h2><strong>Getting help</strong></h2>
-  <p>Just like Suggesting join the discord server and report the problem in help or bugs channel</p>
+    <h2>How Do I Suggest?</h2>
+    <p>Join <a href="https://discord.gg/UMYJrp2B" target="_blank" rel="noopener" class="btn-link">Our Discord</a> and suggest your ideas in the suggestions channel.</p>
 
+    <h2>Getting Help</h2>
+    <p>Just like suggesting, join the Discord server and report problems in the help or bugs channel.</p>
   </div>
-</div>
-
-<script>
-// Particle effect for canvas
-
-const canvas = document.getElementById('particle-canvas');
-const ctx = canvas.getContext('2d');
-let particlesArray;
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-window.addEventListener('resize', function(){
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  init();
-});
-
-class Particle {
-  constructor(){
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 2 + 1;
-    this.speedX = Math.random() * 1 - 0.5;
-    this.speedY = Math.random() * 1 - 0.5;
-  }
-  update(){
-    this.x += this.speedX;
-    this.y += this.speedY;
-    if(this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
-    if(this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
-  }
-  draw(){
-    ctx.fillStyle = '#4a90e2';
-    ctx.shadowColor = '#62b0ff';
-    ctx.shadowBlur = 10;
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fill();
-  }
-}
-
-function init(){
-  particlesArray = [];
-  for(let i=0; i < 80; i++){
-    particlesArray.push(new Particle());
-  }
-}
-
-function animate(){
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particlesArray.forEach(p => {
-    p.update();
-    p.draw();
-  });
-  requestAnimationFrame(animate);
-}
-
-init();
-animate();
-</script>
+</body>
+</html>
