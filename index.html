@@ -1,0 +1,184 @@
+<style>
+  /* Body container styling */
+  .luxury-container {
+    background: linear-gradient(135deg, #001f4d, #003366);
+    color: #cce7ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #0077ffcc;
+    position: relative;
+    overflow: hidden;
+  }
+
+  h1, h2 {
+    color: #7ec8ff;
+    text-shadow: 0 0 8px #3da9fc;
+    font-weight: 900;
+    letter-spacing: 1.3px;
+  }
+
+  a {
+    color: #a1d6ff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  a:hover {
+    text-decoration: underline;
+    color: #62b0ff;
+  }
+
+  strong {
+    color: #f0f9ff;
+    font-weight: 700;
+  }
+
+  hr {
+    border: 0;
+    height: 1px;
+    background: #004080;
+    margin: 2rem 0;
+  }
+
+  /* Animation for links */
+  .glow-link:hover {
+    animation: glow 1.5s infinite alternate;
+  }
+
+  @keyframes glow {
+    0% { text-shadow: 0 0 4px #7ec8ff; }
+    100% { text-shadow: 0 0 12px #4a90e2; }
+  }
+
+  /* Particle canvas overlay */
+  #particle-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Content should be above canvas */
+  .content {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
+<div class="luxury-container">
+  <canvas id="particle-canvas"></canvas>
+  <div class="content">
+
+  <h1>Who is SyloraQ?</h1>
+  <p>SyloraQ is owner of the GBS BLP JPM and some other projects!</p>
+
+  <h2>SyloraQ</h2>
+  <p>SyloraQ is a module that adds new functions to <strong>python</strong> and simplify the existing ones...</p>
+
+  <h2>Guide</h2>
+  <p>Click <a href="GUIDE.md" class="glow-link">GUIDE</a> to see it.</p>
+
+  <h2>Install command</h2>
+  <p><strong>pip install SyloraQ</strong></p>
+
+  <h2>PyPI</h2>
+  <p><a href="https://pypi.org/project/SyloraQ/" target="_blank" rel="noopener" class="glow-link">SyloraQ PyPI</a></p>
+
+  <h2>License</h2>
+  <p>This project is licensed under the <a href="LICENSE.md" class="glow-link">Private Use License</a>.</p>
+
+  <h2>My YouTube channel</h2>
+  <p><a href="https://youtube.com/channel/UCOvDKDUeQXqxkit2_mngZDQ/?sub_confirmation=1" target="_blank" rel="noopener" class="glow-link">SyloraQ</a></p>
+
+  <p><strong>For the exe files you can check <a href="https://github.com/GoodByeSyntax/ByteLightProject" target="_blank" rel="noopener" class="glow-link">ByteLightProject</a>.</strong></p>
+
+  <hr>
+
+  <h2><strong>Coding</strong></h2>
+  <ul>
+    <li>SQ: <a href="https://youtube.com/channel/UCOvDKDUeQXqxkit2_mngZDQ/?sub_confirmation=1" target="_blank" rel="noopener" class="glow-link">Here</a></li>
+    <li>GBS: <a href="https://pypi.org/project/GoodByeSyntax" target="_blank" rel="noopener" class="glow-link">Here</a></li>
+    <li>BLP: <a href="https://pypi.org/project/ByteLightProject" target="_blank" rel="noopener" class="glow-link">Here</a></li>
+    <li>JPM: <a href="https://pypi.org/project/JynPopMod" target="_blank" rel="noopener" class="glow-link">Here</a></li>
+    <li>Jai: <a href="https://pypi.org/project/JynAi" target="_blank" rel="noopener" class="glow-link">Here</a></li>
+  </ul>
+
+  <h2><strong>Platforms</strong></h2>
+  <ul>
+    <li>Youtube: <a href="https://youtube.com/channel/UCOvDKDUeQXqxkit2_mngZDQ/?sub_confirmation=1" target="_blank" rel="noopener" class="glow-link">Here</a></li>
+    <li>Discord: <a href="https://discord.gg/UMYJrp2B" target="_blank" rel="noopener" class="glow-link">Here</a></li>
+    <li>Github: <a href="https://github.com/SyloraQ" target="_blank" rel="noopener" class="glow-link">Here</a></li>
+  </ul>
+
+  <h2><strong>Contact</strong></h2>
+  <p>Gmail: mail service is coming as soon as possible!</p>
+
+  <h2><strong>How Do I Suggest?</strong></h2>
+  <p>Join <a href="https://discord.gg/UMYJrp2B" target="_blank" rel="noopener" class="glow-link">Our Discord</a> and suggest your suggestion in suggestions channel</p>
+
+  <h2><strong>Getting help</strong></h2>
+  <p>Just like Suggesting join the discord server and report the problem in help or bugs channel</p>
+
+  </div>
+</div>
+
+<script>
+// Particle effect for canvas
+
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+let particlesArray;
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', function(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  init();
+});
+
+class Particle {
+  constructor(){
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 1;
+    this.speedX = Math.random() * 1 - 0.5;
+    this.speedY = Math.random() * 1 - 0.5;
+  }
+  update(){
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if(this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+    if(this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+  }
+  draw(){
+    ctx.fillStyle = '#4a90e2';
+    ctx.shadowColor = '#62b0ff';
+    ctx.shadowBlur = 10;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function init(){
+  particlesArray = [];
+  for(let i=0; i < 80; i++){
+    particlesArray.push(new Particle());
+  }
+}
+
+function animate(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particlesArray.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  requestAnimationFrame(animate);
+}
+
+init();
+animate();
+</script>
