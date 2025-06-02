@@ -6,6 +6,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
+    /* Background with animated gradient */
     body {
       margin: 0;
       height: 100vh;
@@ -27,6 +28,7 @@
       100%{background-position:0% 50%}
     }
 
+    /* Container for form with glassmorphism effect */
     .container {
       background: rgba(20, 20, 30, 0.85);
       border-radius: 20px;
@@ -163,63 +165,53 @@
     <p id="message" role="alert" aria-live="assertive"></p>
   </div>
 
-<script>
-  const form = document.getElementById('createForm');
-  const message = document.getElementById('message');
-  const submitButton = form.querySelector('button[type="submit"]');
+  <script>
+    const form = document.getElementById('createForm');
+    const message = document.getElementById('message');
+    const submitButton = form.querySelector('button[type="submit"]');
 
-  async function getCaptcha() {
-    const res = await fetch("/captcha");
-    const data = await res.json();
-    return data;
-  }
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      message.textContent = '';
+      message.className = '';
+      submitButton.disabled = true;
+      submitButton.setAttribute('aria-busy', 'true');
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    message.textContent = '';
-    message.className = '';
-    submitButton.disabled = true;
-    submitButton.setAttribute('aria-busy', 'true');
+      const subdomain = form.subdomain.value.trim().toLowerCase();
+      const htmlcontent = form.htmlcontent.value;
 
-    const subdomain = form.subdomain.value.trim().toLowerCase();
-    const htmlcontent = form.htmlcontent.value;
+      if (!/^[a-z0-9\-]+$/.test(subdomain)) {
+        message.textContent = "Subdomain can only contain lowercase letters, numbers, and hyphens.";
+        message.classList.add('error');
+        submitButton.disabled = false;
+        submitButton.setAttribute('aria-busy', 'false');
+        return;
+      }
 
-    if (!/^[a-z0-9\-]+$/.test(subdomain)) {
-      message.textContent = "Subdomain can only contain lowercase letters, numbers, and hyphens.";
-      message.classList.add('error');
+      try {
+        const response = await fetch('https://b5587a7a-57bd-43b6-b129-c86a176d4138-00-1lwdtzdccview.pike.replit.dev:5000/create-subdomain', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ subdomain, htmlcontent })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          message.classList.add('success');
+          message.textContent = `Success! Subdomain '${subdomain}' created. Visit http://localhost:8381/${subdomain}`;
+          form.reset();
+        } else {
+          message.classList.add('error');
+          message.textContent = `Error: ${result.error}`;
+        }
+      } catch (err) {
+        message.classList.add('error');
+        message.textContent = 'Failed to contact the server.';
+      }
+
       submitButton.disabled = false;
       submitButton.setAttribute('aria-busy', 'false');
-      return;
-    }
-
-    try {
-      const captcha = await getCaptcha();
-      const answer = prompt(`Captcha: ${captcha.question}`);
-      if (answer === null) throw new Error("Captcha cancelled");
-
-      const response = await fetch('/create-subdomain', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ subdomain, htmlcontent, captcha_id: captcha.id, captcha_answer: answer })
-      });
-
-      const result = await response.json();
-      if (response.ok) {
-        message.classList.add('success');
-        message.textContent = `✅ Subdomain '${subdomain}' created. Visit /${subdomain}`;
-        form.reset();
-      } else {
-        message.classList.add('error');
-        message.textContent = `❌ Error: ${result.error}`;
-      }
-    } catch (err) {
-      message.classList.add('error');
-      message.textContent = '❌ Failed to contact the server.';
-    }
-
-    submitButton.disabled = false;
-    submitButton.setAttribute('aria-busy', 'false');
-  });
-</script>
+    });
+  </script>
 </body>
 </html>
