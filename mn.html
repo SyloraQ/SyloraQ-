@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(270deg, #0f2027, #203a43, #2c5364, #1c1c1c);
+      background-size: 800% 800%;
+      animation: gradientShift 20s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Montserrat', sans-serif;
+      color: #00ffe7;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @keyframes gradientShift {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      max-width: 900px;
+      line-height: 1.2;
+      text-shadow:
+        0 0 8px #00ffe7,
+        0 0 20px #00ffe7,
+        0 0 30px #00ffe7,
+        0 0 40px #00fff5,
+        0 0 60px #00fff5,
+        0 0 80px #00fff5;
+      animation: glowPulse 3s ease-in-out infinite;
+      user-select: none;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% {
+        text-shadow:
+          0 0 8px #00ffe7,
+          0 0 20px #00ffe7,
+          0 0 30px #00ffe7,
+          0 0 40px #00fff5,
+          0 0 60px #00fff5,
+          0 0 80px #00fff5;
+      }
+      50% {
+        text-shadow:
+          0 0 12px #00fff5,
+          0 0 28px #00fff5,
+          0 0 40px #00fff5,
+          0 0 50px #00ffe7,
+          0 0 70px #00ffe7,
+          0 0 100px #00ffe7;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to SyloraQServer<br>please visit <code>/create</code> to create a site</h1>
+</body>
+</html>
