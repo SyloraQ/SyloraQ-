@@ -6,7 +6,6 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
-    /* Background with animated gradient */
     body {
       margin: 0;
       height: 100vh;
@@ -28,7 +27,6 @@
       100%{background-position:0% 50%}
     }
 
-    /* Container for form with glassmorphism effect */
     .container {
       background: rgba(20, 20, 30, 0.85);
       border-radius: 20px;
@@ -189,7 +187,7 @@
       }
 
       try {
-        const response = await fetch('https://b5587a7a-57bd-43b6-b129-c86a176d4138-00-1lwdtzdccview.pike.replit.dev:5000/create-subdomain', {', {
+        const response = await fetch('https://b5587a7a-57bd-43b6-b129-c86a176d4138-00-1lwdtzdccview.pike.replit.dev:5000/create-subdomain', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ subdomain, htmlcontent });
